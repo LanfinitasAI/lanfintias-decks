@@ -65,6 +65,35 @@ tr.tot td{color:var(--accent-white);font-weight:700;border-bottom:1px solid var(
 </style>
 </head>
 <body>
+<!-- ========== 密码保护层：复制到 <body> 标签的最开头 ========== -->
+<div id="gate-overlay" style="position:fixed;inset:0;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);z-index:99999;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;transition:opacity 0.4s;">
+  <div style="width:90%;max-width:380px;text-align:center;">
+    <div style="width:64px;height:64px;margin:0 auto 20px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;">🔒</div>
+    <h2 style="color:#fff;margin-bottom:8px;font-size:22px;">Secure Access</h2>
+    <p style="color:rgba(255,255,255,0.6);margin-bottom:24px;font-size:14px;">此文档受密码保护</p>
+    <div style="background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);">
+      <input id="gate-pwd" type="password" placeholder="输入密码" style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(0,0,0,0.2);color:#fff;font-size:15px;outline:none;margin-bottom:12px;" onkeydown="if(event.key==='Enter')gateCheck()">
+      <button onclick="gateCheck()" style="width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-size:15px;font-weight:600;cursor:pointer;">解锁</button>
+      <div id="gate-err" style="color:#ff6b6b;font-size:13px;margin-top:10px;height:18px;opacity:0;transition:opacity 0.2s;">密码错误</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const GATE_PWD = "Lanfinitas888"; // ← 改成你的密码
+  function gateCheck() {
+    if (document.getElementById('gate-pwd').value === GATE_PWD) {
+      document.getElementById('gate-overlay').style.opacity = '0';
+      setTimeout(() => document.getElementById('gate-overlay').remove(), 400);
+    } else {
+      document.getElementById('gate-err').style.opacity = '1';
+      document.getElementById('gate-pwd').value = '';
+      document.getElementById('gate-pwd').focus();
+    }
+  }
+</script>
+<!-- ========== 密码保护层结束 ========== -->
+  
 <div class="slide"><div class="num">01</div><div class="body" style="justify-content:flex-end">
           <div class="lbl">Lanfinitas AI · Company & Product Overview · 2026</div>
           <h1>The Specification
