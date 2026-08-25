@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Access</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ========== 颜色在这里改 ========== */
+    :root {
+      --bg-color: #000000;           /* 背景色：纯黑 */
+      --card-bg: #111111;            /* 卡片背景：深灰 */
+      --text-main: #ffffff;          /* 主文字：白色 */
+      --text-sub: #888888;           /* 副文字：中灰 */
+      --border-color: #333333;       /* 边框：深灰 */
+      --input-bg: #0a0a0a;           /* 输入框背景 */
+      --btn-bg: #ffffff;             /* 按钮背景：白色 */
+      --btn-text: #000000;           /* 按钮文字：黑色 */
+      --error-color: #ff4444;        /* 错误提示：红色 */
+    }
+    /* ========== 颜色改完 ========== */
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 380px;
+      text-align: center;
+    }
+
+    .lock-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      color: var(--text-sub);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: var(--input-bg);
+      color: var(--text-main);
+      font-size: 15px;
+      outline: none;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+
+    input[type="password"]:focus {
+      border-color: #555555;
+    }
+
+    input[type="password"]::placeholder {
+      color: #555555;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: none;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    button:hover {
+      opacity: 0.85;
+    }
+
+    .error {
+      color: var(--error-color);
+      font-size: 13px;
+      margin-top: 10px;
+      height: 18px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .error.show {
+      opacity: 1;
+    }
+
+    /* 解锁后的内容区域 */
+    #content {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    #content.show {
+      display: block;
+    }
+
+    .deck-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .deck-links a {
+      display: block;
+      padding: 16px 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .deck-links a:hover {
+      border-color: #555555;
+      background: #1a1a1a;
+    }
+  </style>
+<base target="_blank">
+</head>
+<body>
+
+  <!-- 密码门 -->
+  <div id="gate" class="container">
+    <div class="lock-icon">🔒</div>
+    <h2>Secure Access</h2>
+    <p class="subtitle">此文档受密码保护</p>
+    <div class="card">
+      <input id="pwd-input" type="password" placeholder="输入密码" onkeydown="if(event.key==='Enter')checkPwd()">
+      <button onclick="checkPwd()">解锁</button>
+      <div id="error-msg" class="error">密码错误</div>
+    </div>
+  </div>
+
+  <!-- 解锁后显示的内容 -->
+  <div id="content">
+    <div class="lock-icon" style="border-color:#333;">✓</div>
+    <h2>验证通过</h2>
+    <p class="subtitle">请选择要查看的文档</p>
+    <div class="deck-links">
+      <!-- ========== 这里改你的两个文件链接 ========== -->
+      <a href="Lanfintias_Seek_Deek.html">Pitch Deck</a>
+      <a href="client-deck.html">C Deck</a>
+      <!-- ========== 改完 ========== -->
+    </div>
+  </div>
+
+  <script>
+    // ========== 这里改密码 ==========
+    const PASSWORD = "Lanfinitas888";
+    // ========== 改完 ==========
+
+    function checkPwd() {
+      const input = document.getElementById('pwd-input').value;
+      const err = document.getElementById('error-msg');
+
+      if (input === PASSWORD) {
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('content').classList.add('show');
+      } else {
+        err.classList.add('show');
+        document.getElementById('pwd-input').value = '';
+        document.getElementById('pwd-input').focus();
+        setTimeout(() => err.classList.remove('show'), 2000);
+      }
+    }
+  </script>
+
+</body>
+</html>
