@@ -57,34 +57,6 @@ tr.tot td{color:var(--accent-white);font-weight:700;border-bottom:1px solid var(
 </style>
 </head>
 <body>
-  <!-- ========== 密码保护层：复制到 <body> 标签的最开头 ========== -->
-<div id="gate-overlay" style="position:fixed;inset:0;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);z-index:99999;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;transition:opacity 0.4s;">
-  <div style="width:90%;max-width:380px;text-align:center;">
-    <div style="width:64px;height:64px;margin:0 auto 20px;background:rgba(255,255,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;">🔒</div>
-    <h2 style="color:#fff;margin-bottom:8px;font-size:22px;">Secure Access</h2>
-    <p style="color:rgba(255,255,255,0.6);margin-bottom:24px;font-size:14px;">此文档受密码保护</p>
-    <div style="background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);">
-      <input id="gate-pwd" type="password" placeholder="输入密码" style="width:100%;padding:12px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.15);background:rgba(0,0,0,0.2);color:#fff;font-size:15px;outline:none;margin-bottom:12px;" onkeydown="if(event.key==='Enter')gateCheck()">
-      <button onclick="gateCheck()" style="width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;font-size:15px;font-weight:600;cursor:pointer;">解锁</button>
-      <div id="gate-err" style="color:#ff6b6b;font-size:13px;margin-top:10px;height:18px;opacity:0;transition:opacity 0.2s;">密码错误</div>
-    </div>
-  </div>
-</div>
-
-<script>
-  const GATE_PWD = "Lanfinitas888"; // ← 改成你的密码
-  function gateCheck() {
-    if (document.getElementById('gate-pwd').value === GATE_PWD) {
-      document.getElementById('gate-overlay').style.opacity = '0';
-      setTimeout(() => document.getElementById('gate-overlay').remove(), 400);
-    } else {
-      document.getElementById('gate-err').style.opacity = '1';
-      document.getElementById('gate-pwd').value = '';
-      document.getElementById('gate-pwd').focus();
-    }
-  }
-</script>
-<!-- ========== 密码保护层结束 ========== -->
 
 <!-- 01 COVER -->
 <div class="slide"><div class="num">01</div>
@@ -93,7 +65,7 @@ tr.tot td{color:var(--accent-white);font-weight:700;border-bottom:1px solid var(
   <h1>SpecFlow<br>把审美边界翻译成工业标准量产数据的报单工具</h1>
   <p style="font-size:20px;color:var(--text-primary);margin-top:22px;max-width:760px">
     The Specification Intelligence Layer for Apparel Manufacturing</p>
-  <p style="margin-top:24px;max-width:780px">
+  <p style="margin-top:26px;max-width:780px">
     数据定边界， 版型不走样--让审美直达生产线<br>
     We compile design language into factory-executable production specifications.</p>
   <div style="margin-top:34px">
@@ -137,11 +109,11 @@ tr.tot td{color:var(--accent-white);font-weight:700;border-bottom:1px solid var(
     <div class="card"><div class="k">Technology</div><h3>大模型具备结构化输出能力</h3>
       <p>2024，LLM 第一次能稳定输出工业级结构化规格。</p></div>
     <div class="card"><div class="k">Supply Chain</div><h3>产能分布重组</h3>
-      <p>供应链向东南亚、南亚、拉美迁移。新工厂缺的不是设备，是能读懂规格的人。规格必须自解释。</p></div>
+      <p>供应链向全球南方迁移。新工厂最缺的不是设备，是能读懂技术规格并使用多种语言进行有效沟通的技术人员。因此产品规格必须自解释。</p></div>
     <div class="card"><div class="k">Competitive Vacuum</div><h3>3D 赛道正在离开产线层</h3>
-      <p>主流 3D 服装厂商转向消费级内容与具身智能方向，生产执行层出现空档。窗口存在，但不会长期存在。</p></div>
+      <p>主流 3D 服装厂商侧重消费级内容与具身智能，生产执行层规范表述仍处于真空地带。成为短暂窗口期。</p></div>
   </div>
-  <div class="note">窗口判断：我们估计生产执行层的空窗期为 12–24 个月。这决定了本轮融资的用途是加速，而非探索。</div>
+  <div class="note">预计窗口期为 12–24 个月。因此本轮融资的用途是加速，而非探索。</div>
 </div>
 <div class="foot">This document is confidential and prepared by Lanfinitas, it is not to be relied on by any third party without our prior consent. © 2026 All rights reserved.</div>
 </div>
@@ -149,7 +121,7 @@ tr.tot td{color:var(--accent-white);font-weight:700;border-bottom:1px solid var(
 <!-- 04 SOLUTION -->
 <div class="slide"><div class="num">04</div>
 <div class="lbl">03 · Solution</div>
-<h2>一个编译器，不是一个设计工具</h2>
+<h2>SpecFlow 是一个专业术语表示编译器，不是设计生成工具</h2>
 <div class="sub">A compiler, not a design tool</div>
 <div class="body">
   <div class="card" style="padding:30px">
